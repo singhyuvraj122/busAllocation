@@ -1,13 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h3>hello world</h3>
-  <script src="./text.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./main.css">
+  </head>
+  <body>
+    <main class="card">
+      <section class="cardHead">
+        <h3>bus allocation system</h3>
+      </section>
+      <section class="cardBody">
+        <form>
+          <ul>
+            <li class="cardInput">
+              <span class="cardInputlabel">number of buses</span>
+              <input
+                type="number"
+                placeholder="enter number only"
+                min="0"
+                required
+              />
+            </li>
+            <li class="cardInput">
+              <span class="cardInputlabel">number of people</span>
+              <input
+                type="number"
+                placeholder="enter number only"
+                min="0"
+                required
+              />
+            </li>
+            <li class="cardInput">
+              <input type="submit" value="seat map" />
+            </li>
+          </ul>
+        </form>
+      </section>
+    </main>
+    <script src="./text.js"></script>
+  </body>
 </html>
