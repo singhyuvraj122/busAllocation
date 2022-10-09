@@ -22,7 +22,11 @@
 }
 
 .mainCont{
+  width: max-content;
+  margin: 0px auto;
   background-color: var(--outputCont-bg-color);
+  box-shadow: 2px 2px 5px 4px grey;
+  border: 2px solid rgb(202, 202, 202);
 }
 
 .card{
