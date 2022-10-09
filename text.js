@@ -57,13 +57,65 @@ console.log("\ntotal number of people : ",totalSeatAllocated + totalNumberOFPeop
 
 //UI varibable
 
-let numOfBuses = document.querySelector()
+let numOfBuses = Number(document.querySelector("#numberOfBuses input").value);
 
+let numOfPeople = Number(document.querySelector("#numberOfPeople input").value);
+
+let seatMapBtn = document.querySelector(".cardInput input[type='submit']");
+
+let cardOuputSubCont = document.querySelector(".cardOutputSubCont");
+
+console.log("number of buses from ui = ",numOfBuses);
+console.log("number of people from ui = ",numOfPeople);
+console.log(seatMapBtn);
+
+//event listeners
+seatMapBtn.addEventListener("click",seatMapGenerate);
 
 //new code
 let num_of_buses = 0;
 let num_of_people = 0;
 let bus_seat = 0;
+
+//event handlers
+function seatMapGenerate(e){
+  e.preventDefault();
+  
+  //passing values to function to generate bus seat map by taking values from ui input
+  num_of_buses = numOfBuses;
+  num_of_people = numOfPeople;
+
+  //getting list of seat in each bus
+  let bus_seat_map = do_allocation(num_of_buses,num_of_people);
+  console.log(`\nfinal seat map : ${bus_seat_map}`);
+  
+  //printing output to ui
+  bus_seat_map.forEach(output);
+  
+  function output(val,ind){
+    //ouput list node
+    let opList = document.createElement("li");
+    opList.classList.add("cardOutputList");
+
+    //ouput list name span node
+    let opName = document.createElement("span");
+    opName.appendChild(document.createTextNode(`Bus ${ind}`));
+    opName.classList.add("outputName");
+    
+    //ouput list value span node
+    let opValue = document.createElement("span");
+    opValue.appendChild(document.createTextNode(`${val} seats`));
+    opValue.classList.add("outputValue");
+
+    opList.appendChild(opName);
+    opList.appendChild(opValue);
+
+    cardOuputSubCont.appendChild(opList);
+
+    console.log(opName);
+    console.log(opValue);
+  }
+}
 
 
 function do_allocation(num_of_buses,num_of_people){
@@ -115,6 +167,5 @@ function do_allocation(num_of_buses,num_of_people){
   return bus_seat_map;
 }
 
-let bus_seat_map = do_allocation(num_of_buses,num_of_people);
-console.log(`final seat map : ${bus_seat_map}`);
+
 
