@@ -8,38 +8,50 @@
     <link rel="stylesheet" type="text/css" href="./main.css">
   </head>
   <body>
-    <main class="card">
-      <section class="cardHead">
-        <h3>bus allocation system</h3>
+    <div class="mainCont">
+      <main class="card">
+        <section class="cardHead">
+          <h3>Bus allocation system</h3>
+        </section>
+        <section class="cardBody">
+          <form class="cardForm">
+            <ul class="cardInputCont">
+              <li class="cardInput">
+                <span class="cardInputLabel">Number of buses</span>
+                <input
+                  type="number"
+                  placeholder="enter number only"
+                  min="0"
+                  required
+                />
+              </li>
+              <li class="cardInput">
+                <span class="cardInputLabel">Number of people</span>
+                <input
+                  type="number"
+                  placeholder="enter number only"
+                  min="0"
+                  required
+                />
+              </li>
+              <li class="cardInput">
+                <input type="submit" value="seat map" />
+              </li>
+            </ul>
+          </form>
+        </section>
+      </main>
+      <section class="cardOutputCont">
+        <h3>Bus seat list</h3>
+        <ul class="cardOutputSubCont">
+          <li class="cardOutputList">
+            <span class="outputName">Bus 1</span>
+            <spna class="outputValue">20 seats</spna>
+          </li>
+          </li>
+        </ul>
       </section>
-      <section class="cardBody">
-        <form>
-          <ul>
-            <li class="cardInput">
-              <span class="cardInputlabel">number of buses</span>
-              <input
-                type="number"
-                placeholder="enter number only"
-                min="0"
-                required
-              />
-            </li>
-            <li class="cardInput">
-              <span class="cardInputlabel">number of people</span>
-              <input
-                type="number"
-                placeholder="enter number only"
-                min="0"
-                required
-              />
-            </li>
-            <li class="cardInput">
-              <input type="submit" value="seat map" />
-            </li>
-          </ul>
-        </form>
-      </section>
-    </main>
+    </div>
     <script src="./text.js"></script>
   </body>
 </html>

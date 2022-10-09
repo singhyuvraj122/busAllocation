@@ -1,17 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap');
+
 *{
   margin: 0px;
-  padding: 2px;
+  padding: 0px;
   box-sizing: border-box;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 :root{
+  --card-padding: 40px 20px;
+  --card-font-family: 'Noto Sans', sans-serif;
+  --card-color: #727a8b;
   --card-bg-color: #fbfcfc;
+  --card-box-shadow-color: #e8eaf1;
+  --card-border-radius: 40px;
+  --card-input-color: #222b4c;
+  --card-input-text-shadow: #aaaebb;
+  --card-btn-bg-color: #377eff;
+  --card-btn-color: #f2f6ff;
+  --outputCont-bg-color: #f1f3f6;
+}
+
+.mainCont{
+  background-color: var(--outputCont-bg-color);
 }
 
 .card{
+  position: relative;
   max-width: 428px;
   min-width: 360px;
-  background-color: 
-  box-shadow: 
+  padding: var(--card-padding);
+  border-bottom-left-radius: var(--card-border-radius);
+  border-bottom-right-radius: var(--card-border-radius);
+  background-color: var(--card-bg-color);
+  box-shadow: 2px 2px 5px 4px var(--card-box-shadow-color);
+  color: var(--card-color); 
+  font-family: var(--card-font-family);
+}
+
+.cardHead{
+  margin-bottom: 20px;
+}
+
+.cardHead h3{
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--card-input-color);
+}
+
+.cardInputCont{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardInput{
+  display: flex;
+  flex-direction: column;
+}
+
+.cardInputLabel{
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.cardInput input[type="number"]{
+  appearance: text;
+  border: none;
+  border-bottom: 2px solid #e7ebf7;
+  padding: 10px 5px;
+  font-size: large;
+  color: var(--card-input-color);
+  text-shadow: var(--card-input-text-shadow);
+  font-weight: 600;
+  appearance: textfield;
+}
+
+.cardInput input[type="submit"]{
+  position: absolute;
+  bottom: -5%;
+  left: calc( 50% - 50px );
+  align-self: center;
+  border: none;
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-btn-bg-color);
+  padding: 10px 20px;
+  color: var(--card-btn-color);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.cardOutputCont{
+  font-family: var(--card-font-family);
+  max-width: 428px;
+  min-width: 360px;
+  height: 760px;
+  padding: 40px 30px;
+  overflow: hidden;
+  background-color: var(--outputCont-bg-color);
+}
+
+.cardOutputCont h3{
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--card-input-color);
+  margin-bottom: 20px;
+}
+
+.cardOutputSubCont{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: scroll;
+}
+
+.cardOutputList{
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px solid #e7ebf7;
+}
+
+.outputName{
+  color: var(--card-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.outputValue{
+  color: var(--card-color);
+  letter-spacing: 0.08rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--card-input-color);
 }

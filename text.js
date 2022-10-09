@@ -55,6 +55,11 @@ console.log("\ntotal number of people left : ",totalNumberOFPeopleLeft);
 console.log("\ntotal number of people : ",totalSeatAllocated + totalNumberOFPeopleLeft);
 */
 
+//UI varibable
+
+let numOfBuses = document.querySelector()
+
+
 //new code
 let num_of_buses = 0;
 let num_of_people = 0;
@@ -112,3 +117,4 @@ function do_allocation(num_of_buses,num_of_people){
 
 let bus_seat_map = do_allocation(num_of_buses,num_of_people);
 console.log(`final seat map : ${bus_seat_map}`);
+
