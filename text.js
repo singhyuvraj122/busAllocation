@@ -69,6 +69,10 @@ console.log("number of buses from ui = ",numOfBuses);
 console.log("number of people from ui = ",numOfPeople);
 console.log(seatMapBtn);
 
+console.log("number of buses from ui = ",document.querySelector("#numberOfBuses input"));
+
+console.log("number of buses from ui = ",document.querySelector("#numberOfBuses input").textContent);
+
 //event listeners
 seatMapBtn.addEventListener("click",seatMapGenerate);
 
@@ -80,6 +84,7 @@ let bus_seat = 0;
 //event handlers
 function seatMapGenerate(e){
   e.preventDefault();
+  console.log(e.target);
   
   //passing values to function to generate bus seat map by taking values from ui input
   num_of_buses = numOfBuses;
