@@ -57,56 +57,112 @@ console.log("\ntotal number of people : ",totalSeatAllocated + totalNumberOFPeop
 
 //UI varibable
 
-let numOfBuses = Number(document.querySelector("#numberOfBuses input").value);
+console.log(isNaN("yuvraj"));
 
-let numOfPeople = Number(document.querySelector("#numberOfPeople input").value);
+let numOfBuses = document.querySelector("#numberOfBuses input");
+
+let numOfPeople = document.querySelector("#numberOfPeople input");
 
 let seatMapBtn = document.querySelector(".cardInput input[type='submit']");
 
 let cardOuputSubCont = document.querySelector(".cardOutputSubCont");
 
-console.log("number of buses from ui = ",numOfBuses);
-console.log("number of people from ui = ",numOfPeople);
-console.log(seatMapBtn);
-
-console.log("number of buses from ui = ",document.querySelector("#numberOfBuses input"));
-
-console.log("number of buses from ui = ",document.querySelector("#numberOfBuses input").textContent);
+// console.log(numOfBuses);
+// console.log(numOfPeople);
+// console.log(seatMapBtn);
 
 //event listeners
-seatMapBtn.addEventListener("click",seatMapGenerate);
+seatMapBtn.addEventListener("click", clrOutput); //first clr output 
+//is called so that when new ouput is generated it will not follow 
+//the previous generated output
+seatMapBtn.addEventListener("click", seatMapGenerate); //generate seat map
+numOfBuses.addEventListener("focus", clrInpt); //clear input on focus
+numOfPeople.addEventListener("focus", clrInpt); //clear input on focus
 
 //new code
-let num_of_buses = 0;
-let num_of_people = 0;
+let num_of_buses;
+let num_of_people;
 let bus_seat = 0;
 
 //event handlers
-function seatMapGenerate(e){
-  e.preventDefault();
-  console.log(e.target);
-  
-  //passing values to function to generate bus seat map by taking values from ui input
-  num_of_buses = numOfBuses;
-  num_of_people = numOfPeople;
+function clrInpt(e) {
+  e.target.value = "";
+}
 
-  //getting list of seat in each bus
-  let bus_seat_map = do_allocation(num_of_buses,num_of_people);
+function clrOutput(e) {
+  // console.log(cardOuputSubCont.children);
+  if (cardOuputSubCont.children.length > 0) {
+    while (cardOuputSubCont.lastChild) {
+      cardOuputSubCont.lastChild.remove();
+    }
+  }
+  else {
+    return;
+  }
+}
+
+//function for genrating output and handling inputs as well as calling do_allocation method
+function seatMapGenerate(e) {
+  e.preventDefault();
+
+  //passing values to function to generate bus seat map by taking values from ui input
+
+  let num_of_buses = Number(numOfBuses.value);
+  let num_of_people = Number(numOfPeople.value);
+
+  console.log(num_of_buses);
+
+  //input validation
+
+  if ( numOfBuses.value.length === 0 || numOfPeople.value.length === 0 ) {
+    let errorList = document.createElement("li");
+    errorList.classList.add("cardOutputList");
+
+    let errorMsg = document.createElement("span");
+    errorMsg.classList.add("outputValue");
+    errorMsg.appendChild(document.createTextNode("Input not a number"));
+
+    errorList.appendChild(errorMsg);
+    cardOuputSubCont.appendChild(errorList);
+    return;
+  }
+
+  if (num_of_buses < 0 || num_of_people < 0) {
+    alert("enter number greater than 1");
+    return;
+  }
+
+  if (num_of_buses === 0) {
+    let errorList = document.createElement("li");
+    errorList.classList.add("cardOutputList");
+
+    let errorMsg = document.createElement("span");
+    errorMsg.classList.add("outputValue");
+    errorMsg.appendChild(document.createTextNode("Sorry, no bus"));
+
+    errorList.appendChild(errorMsg);
+    cardOuputSubCont.appendChild(errorList);
+    return;
+  }
+
+  //getting list of seat in each bus by calling do_allocation
+  //and passing number of people and number of buses
+  let bus_seat_map = do_allocation(num_of_buses, num_of_people);
   console.log(`\nfinal seat map : ${bus_seat_map}`);
-  
+
   //printing output to ui
   bus_seat_map.forEach(output);
-  
-  function output(val,ind){
+
+  function output(val, ind) {
     //ouput list node
     let opList = document.createElement("li");
     opList.classList.add("cardOutputList");
 
     //ouput list name span node
     let opName = document.createElement("span");
-    opName.appendChild(document.createTextNode(`Bus ${ind}`));
+    opName.appendChild(document.createTextNode(`Bus ${ind + 1}`));
     opName.classList.add("outputName");
-    
+
     //ouput list value span node
     let opValue = document.createElement("span");
     opValue.appendChild(document.createTextNode(`${val} seats`));
@@ -116,61 +172,55 @@ function seatMapGenerate(e){
     opList.appendChild(opValue);
 
     cardOuputSubCont.appendChild(opList);
-
-    console.log(opName);
-    console.log(opValue);
   }
 }
 
 
-function do_allocation(num_of_buses,num_of_people){
+function do_allocation(num_of_buses, num_of_people) {
   let bus_seat_map = [];
   console.log("\n################################\n");
-  console.log("number of buses = ",num_of_buses);
-  console.log("num_of_people = ",num_of_people);
+  console.log("number of buses = ", num_of_buses);
+  console.log("num_of_people = ", num_of_people);
   console.log("\n################################\n");
-  
+
   //loop for getting seats allocated for each bus
-  for(let bus_num = 0; bus_num < num_of_buses; bus_num++){
-    console.log("\n",bus_num," iteration")
+  for (let bus_num = 0; bus_num < num_of_buses; bus_num++) {
+    console.log("\n", bus_num, " iteration")
     //calculating bus seats for current bus 
     //checking whether its first bus than default seat = 1
-    if(bus_num === 0){
+    if (bus_num === 0) {
       bus_seat = 1;
-      console.log(`number of bus 0 seats = `,bus_seat);
+      console.log(`number of bus 0 seats = `, bus_seat);
     }
-    else{ 
+    else {
       //checking for previous bus invalid index of array for bus_num = 1
-      if(bus_num === 1){
+      if (bus_num === 1) {
         bus_seat = bus_seat_map[bus_num - 1] + 0;
-        console.log(`number of bus 1 seats = `,bus_seat);
+        console.log(`number of bus 1 seats = `, bus_seat);
       }
-      else{
+      else {
         //current bus seats =  sum of previous two buses 
         bus_seat = bus_seat_map[bus_num - 1] + bus_seat_map[bus_num - 2];
-        console.log(`number of bus ${bus_num} seats = `,bus_seat);
+        console.log(`number of bus ${bus_num} seats = `, bus_seat);
       }
     }
-    if(num_of_people >= bus_seat){
+    if (num_of_people >= bus_seat) {
       bus_seat_map[bus_num] = bus_seat;
-      console.log("bus seating map = ",bus_seat_map);
+      console.log("bus seating map = ", bus_seat_map);
       num_of_people = num_of_people - bus_seat;
-      console.log("number of people left = ",num_of_people);
+      console.log("number of people left = ", num_of_people);
     }
-    else{
-      if(num_of_people === 0){
+    else {
+      if (num_of_people === 0) {
         bus_seat_map[bus_num] = 0;
       }
-      else{
+      else {
         bus_seat_map[bus_num] = num_of_people;
         num_of_people = 0;
       }
-      console.log("bus seating map = ",bus_seat_map);
-      console.log("number of people left = ",num_of_people);
+      console.log("bus seating map = ", bus_seat_map);
+      console.log("number of people left = ", num_of_people);
     }
   }
   return bus_seat_map;
 }
-
-
-
