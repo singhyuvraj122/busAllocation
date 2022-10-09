@@ -165,7 +165,7 @@ function seatMapGenerate(e) {
 
     //ouput list value span node
     let opValue = document.createElement("span");
-    opValue.appendChild(document.createTextNode(`${val} seats`));
+    opValue.appendChild(document.createTextNode(`${val} people`));
     opValue.classList.add("outputValue");
 
     opList.appendChild(opName);
